@@ -1,0 +1,563 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html dir="ltr"> 
+  <head>
+    <base href="https://pict.ethdigitalcampus.com:443/DCWeb/">
+    
+    <title>Digital Campus --> AAA --> Activity List</title>
+    <link rel= "stylesheet" type= "text/css" href="/container/resources/stylesheet/s_ecube.css">   
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+	
+	<script type='text/javascript' src='https://pict.ethdigitalcampus.com:443/DCWeb/dwr/interface/aaaUtil.js'></script>
+	<script type='text/javascript' src='https://pict.ethdigitalcampus.com:443/DCWeb/dwr/engine.js'></script>
+	<script type='text/javascript' src='https://pict.ethdigitalcampus.com:443/DCWeb/dwr/util.js'></script>
+        
+    <script language="javascript1.2">
+     
+    var prevServiceId = 0;
+	var lastServiceId = 0;
+	var Log_in_id=encodeURIComponent('EMP680');
+	//This function shows the service info of the service that is clicked.
+	function showData(serviceId){
+
+        //if service id value exist in the cookie, then that service information is hidden,
+     	//when we come back to the activity page. 
+        var serviceIdVal = get_cookie('EMP680');
+		prevServiceId = serviceId;
+        document.cookie="EMP680" + "=" +serviceId;
+		document.activityList.action="https://pict.ethdigitalcampus.com:443/DCWeb/form/jsp_aaa/Authenticate.jsp?service_id="+serviceId;
+        document.activityList.submit();
+     }//end of  function showData()
+     
+     function showServiceOnLoad(showServiceInfo){
+     	var serviceIdVal = get_cookie('EMP680');
+     	
+     	//if service id value exist in the cookie, then that service information is shown,
+     	//when we come back to the activity page.
+     	if(serviceIdVal != null && serviceIdVal.length>0 && serviceIdVal!=showServiceInfo){
+     		document.activityList.action="https://pict.ethdigitalcampus.com:443/DCWeb/form/jsp_aaa/Authenticate.jsp?service_id="+serviceIdVal;
+	        document.activityList.submit();     	
+		 }
+     }//and of  function showServiceOnLoad
+     
+    //This function retieves the value set in Cookie
+	function get_cookie(Name) {
+  		var search = Name + "="
+  		var returnvalue = null;
+  		if (document.cookie.length > 0) {
+    		offset = document.cookie.lastIndexOf(search)
+    		// if cookie exists
+    		if (offset != -1) { 
+      			offset += search.length
+      			// set index of beginning of value
+      			end = document.cookie.indexOf(";", offset);
+      			// set index of end of cookie value
+      			if (end == -1) {
+      				end = document.cookie.length;
+				}      			
+      			returnvalue=unescape(document.cookie.substring(offset, end))
+      		}
+   		}
+  		return returnvalue;
+	}//end of function get_cookie()
+     
+	function linkNewWindow(url){
+		window.open(url,'win1','toolbar=no,top=20, left=30, directories=no,status=no,menubar=yes,scrollbars=yes,width=900,height=580, resizable=yes');
+	}//function linkNewWindow()
+	
+	
+	function passValues(privilege,loginid,ip_address) {
+		aaaUtil.insertLoginDetails(_insertLoginDetails,loginid,ip_address,privilege,'PICT');
+	}
+	
+	function _insertLoginDetails(booldata){
+	}
+     </script>
+  </head>
+ 	
+   <body  background="/container/resources/gif/backgrund-page.gif" onload="showServiceOnLoad(9);" leftmargin="0" topmargin="0">
+  
+  <!-- Header Starts -->
+  
+<link rel= "stylesheet" type= "text/css" href="/container/resources/stylesheet/s_ecube.css">
+
+
+<!-- Header  -->
+  <!-- Apply Language Starts -->
+   
+
+
+	
+<style> TD { font-family: Verdana; font-size: 10 } FORM { font-family: Verdana; font-size: 10 } INPUT { font-family: Verdana; font-size: 10 } BODY { font-family: Verdana; font-size: 10 } TABLE { font-family: Verdana; font-size: 10 } TEXTAREA { font-family: Verdana; font-size: 10 } MARQUEE { font-family: Verdana; font-size: 10 } SELECT { font-family: Verdana; font-size: 10 } </style>
+
+	<script language="JavaScript"  src="/container/resources/validation/Parser.js"></script>
+	<script language="JavaScript" >
+		isEng = true;
+	</script>
+
+
+<style>
+td.MTTD2
+      { 	
+	background-color: #FFFFFF;
+	border: 1 solid #EEEEEE;
+	border-collapse: collapse;
+	cellspacing		:0;
+	cellpadding		:0;
+	font-family: Verdana;
+	font-size: 10;
+	color: #333333;
+	text-align:left;
+	}
+</style>
+
+
+
+
+  <!-- Apply Language Ends -->
+<br>
+  <script>
+	function callTogglelocalLang(locallang){
+		document.headerForm1.localLang.value=locallang;
+    	document.headerForm1.submit();
+    }
+   
+    </script>
+
+<input type="hidden" name="localLang" value="en">    
+<table width="98%" border="1" cellpadding="0" align=center cellspacing="0" style="border: 10 solid #DFDCCE; border-collapse: collapse" bgcolor="#FFFFFF">
+	<tr>
+		<td  valign="top" align="left">
+			<table width="100%" border="0" cellpadding="0" style="border-collapse: collapse" bgcolor="#EFEFDE">
+				<tr>
+					<td valign="top" align="left" background="/container/resources/gif/new/topbandbg.gif" bgcolor="#EFEFDE">
+				    </td>
+					<td background="/container/resources/gif/new/topbandbg.gif" bgcolor="#EFEFDE">
+					 	 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/container/resources/gif/logos/PICT/pict_logo.png"  width="98" height="100" >
+					 </td>
+					<td>
+						<img src="/container/resources/gif/new/topbandbg.gif" width="75" height="63">
+					</td>
+					<td  valign="center" align="right" background="/container/resources/gif/new/topbandbg.gif" bgcolor="#EFEFDE">
+					<img src="/container/resources/gif/logos/logo.gif" width="235" height="63" >
+					</td>
+					<td align=right>
+						
+					</td>
+				</tr>
+	    		
+				<table width="100%"  border="1" cellpadding="0" cellspacing="0" style="border: 6 solid #EFEFDE; border-collapse: collapse" bgcolor="#EFEFDE">
+					<tr>
+						<td align="left">&nbsp;
+											
+						</td>
+
+						<td  width="600" align="right">
+							<align="left" style="margin-right: 10"><font size="1.4" face="Verdana" color="#524D36" style = rig>
+							
+							<a style="text-decoration:none" href="https://pict.ethdigitalcampus.com:443/DCWeb/form/jsp_aaa/Authenticate.jsp" ><b><font  color="#524D36" > Activities</font></b></a> | 
+							<a style="text-decoration:none" href="https://pict.ethdigitalcampus.com:443/DCWeb/form/jsp_common/dashBoardDetails.jsp" ><b><font  color="#524D36" > Dashboard  </font> </b></a> | 
+								<a style="text-decoration:none" href="https://pict.ethdigitalcampus.com:443/DCWeb/servlet/LogOut" ><b><font  color="#524D36" > Log Out</font> </b></a>
+							</font>
+						</td>
+	  				</tr>
+	  				 <td  colspan="2">
+						<MARQUEE SCROLLDELAY=1000>
+						
+						<align="right" style="margin-right: 10"><font size="1.4" face="Verdana" color="#524D36" style = rig>
+						<b>
+						
+							  Hi  ! CHETAN CHANDRAKANT PAWAR 
+						
+						</b>
+						</MARQUEE>
+						
+						</td>
+					</tr>
+	   			</table>
+	   						
+
+ 
+   				<tr>
+					<td align="center">
+						<br>
+ 		
+  <!-- Header Ends -->
+  <form name="activityList" method=post>
+  
+
+	<input type=hidden name="lastAccessedService" value="">
+	<table width="100%" align="center"> <!--Main outer table-->
+		<tr>
+     		<td  width="25%" align="left" valign="top"> <!-- Start Displaying Services-->
+      			<table width="100%" align = "left" style="border:1px solid gray; width:100%; margin-bottom: 1em; padding: 10px" >
+
+                     <tr>
+                        <td  bgcolor="#EEEEEE" height="25" style="margin-left:80%;" > 
+                        	<b>
+							<font face="Verdana" size="1" color="#524D36" style="margin-left: 20">
+                            <a style="text-decoration:none" href="javascript:showData(5);">
+                            	<font  color="#666666" >
+                            	Student Admission
+                            	</font>
+                            </a>
+                            </font>
+                            </b>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td  bgcolor="#EECAFF" height="25" style="margin-left:80%;" > 
+                        	<b>
+							<font face="Verdana" size="1" color="#524D36" style="margin-left: 20">
+                            <a style="text-decoration:none" href="javascript:showData(9);">
+                            	<font  color="#666666" >
+                            	Student Attendance
+                            	</font>
+                            </a>
+                            </font>
+                            </b>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td  bgcolor="#EEEEEE" height="25" style="margin-left:80%;" > 
+                        	<b>
+							<font face="Verdana" size="1" color="#524D36" style="margin-left: 20">
+                            <a style="text-decoration:none" href="javascript:showData(30);">
+                            	<font  color="#666666" >
+                            	Unit Test Portal
+                            	</font>
+                            </a>
+                            </font>
+                            </b>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td  bgcolor="#EEEEEE" height="25" style="margin-left:80%;" > 
+                        	<b>
+							<font face="Verdana" size="1" color="#524D36" style="margin-left: 20">
+                            <a style="text-decoration:none" href="javascript:showData(33);">
+                            	<font  color="#666666" >
+                            	Practical and Tutorial Assessment
+                            	</font>
+                            </a>
+                            </font>
+                            </b>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td  bgcolor="#EEEEEE" height="25" style="margin-left:80%;" > 
+                        	<b>
+							<font face="Verdana" size="1" color="#524D36" style="margin-left: 20">
+                            <a style="text-decoration:none" href="javascript:showData(11);">
+                            	<font  color="#666666" >
+                            	Staff Leave Management
+                            	</font>
+                            </a>
+                            </font>
+                            </b>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td  bgcolor="#EEEEEE" height="25" style="margin-left:80%;" > 
+                        	<b>
+							<font face="Verdana" size="1" color="#524D36" style="margin-left: 20">
+                            <a style="text-decoration:none" href="javascript:showData(36);">
+                            	<font  color="#666666" >
+                            	Register Your Grievance
+                            	</font>
+                            </a>
+                            </font>
+                            </b>
+                        </td>
+                    </tr>
+
+                </table>
+      		</td><!-- End Displaying Services-->
+      
+      		<td  width="70%" valign="top" > <!-- Start Displaying Service Description and Activity list-->
+      		
+      			<table width="100%"  style="border:1px solid gray; width:100%; margin-bottom: 1em; padding: 10px"><!-- give ID-->
+      				<tr  ><!--Service image and description -->
+      					<td height="30%" >
+                			<table   width="100%">
+                   				<tr>
+			                       <td bgcolor="#FFFFFF" align="center">                   
+			                           <p><img border="0" src="/container/resources/gif/services/Attendance.jpg" ></p>
+			                           <p style="margin-left: 25; margin-right: 30; margin-top: 10; margin-bottom: 10" align="justify"><font size="1" face="Verdana" color="#52554A">  
+			Teachers keep a daily record of attendance for each student. Regular and on-time attendance will 
+help to evaluate students' performance. Students will be responsible for all lectures and other 
+materials covered, regardless if an absence was excused or not. Policies governing attendance in 
+class are varied and depend upon the institution and/or the professor or instructor.
+Using this module the concerned teacher of the class can mark student as absent for a particular 
+day, can manage attendance of students of various classes, and able to edit student attendance. 
+He/She can also view the attendance for a specified duration.			
+		&nbsp;Student Attendance&nbsp;</font></p>
+			                       </td> 
+			                   </tr>
+		                	</table>
+		             	</td>  
+		      		</tr><!--End Service image and description -->
+      				
+      				
+      				<tr><!--Displaying space-->
+      					<td>
+      						
+      					</td>
+      				</tr><!--End of Displaying space-->
+	
+      				<tr><!--Displaying space-->
+      					<td>
+      					
+      					</td>
+      				</tr><!--End of Displaying space-->
+      				
+      				<tr> <!--Activity list-->
+      					<td align="left">
+                        <table >
+                        	<tr>
+
+
+                                <td width="10" height="15" align="left">
+                                	<b>
+                                	<font face="Verdana" size="1" color="#96AECD">
+	            						<!--  <img border="0" src="/DCWeb/form/resources/gif/arrow.gif" width="10" height="20">-->
+	            						&gt;&gt;
+	            					</font>
+	            					</b>
+	            				</td>
+	            				 <td class="MTTD2" style="border:0" width="50%" height="15" nowrap="nowrap" align="left">
+	            				 	<font size="1" face="Verdana" color="#524D36" style = rig> 	
+	            				 	
+	            				 	<a style="text-decoration:none"  href="https://pict.ethdigitalcampus.com:443/DCWeb/form/jsp_StudentAttendance_PICT/SubjectWiseAttendanceFilter_PICT.jsp?loginid=EMP680"  onclick="passValues('267','EMP680','152.57.133.26');" >
+	            				 			               				 	
+                               		
+                               			<b><font size="1" color="#524D36" >Attendance Record (P:F-CTL-UG/06/R1)</font></b> 
+                               			
+                               		</a>
+                                </td>
+                                
+                                
+							
+
+
+                                <td width="10" height="15" align="left">
+                                	<b>
+                                	<font face="Verdana" size="1" color="#96AECD">
+	            						<!--  <img border="0" src="/DCWeb/form/resources/gif/arrow.gif" width="10" height="20">-->
+	            						&gt;&gt;
+	            					</font>
+	            					</b>
+	            				</td>
+	            				 <td class="MTTD2" style="border:0" width="50%" height="15" nowrap="nowrap" align="left">
+	            				 	<font size="1" face="Verdana" color="#524D36" style = rig> 	
+	            				 	
+	            				 	<a style="text-decoration:none"  href="https://pict.ethdigitalcampus.com:443/DCWeb/form/jsp_StudentAttendance_PICT/SubjectWiseAttendanceSummaryFilter_PICT.jsp?loginid=EMP680"  onclick="passValues('753','EMP680','152.57.133.26');" >
+	            				 			               				 	
+                               		
+                               			<b><font size="1" color="#524D36" >Subjectwise Attendance Summary(P:F-CTL-UG/07/R0)</font></b> 
+                               			
+                               		</a>
+                                </td>
+                                
+                                
+							
+
+							</tr><tr>
+
+
+                                <td width="10" height="15" align="left">
+                                	<b>
+                                	<font face="Verdana" size="1" color="#96AECD">
+	            						<!--  <img border="0" src="/DCWeb/form/resources/gif/arrow.gif" width="10" height="20">-->
+	            						&gt;&gt;
+	            					</font>
+	            					</b>
+	            				</td>
+	            				 <td class="MTTD2" style="border:0" width="50%" height="15" nowrap="nowrap" align="left">
+	            				 	<font size="1" face="Verdana" color="#524D36" style = rig> 	
+	            				 	
+	            				 	<a style="text-decoration:none"  href="https://pict.ethdigitalcampus.com:443/DCWeb/form/jsp_StudentAttendance_PICT/MarkAttendanceParameter_PICT.jsp?loginid=EMP680"  onclick="passValues('687','EMP680','152.57.133.26');" >
+	            				 			               				 	
+                               		
+                               			<b><font size="1" color="#524D36" >Mark Student Attendance</font></b> 
+                               			
+                               		</a>
+                                </td>
+                                
+                                
+							
+
+
+                                <td width="10" height="15" align="left">
+                                	<b>
+                                	<font face="Verdana" size="1" color="#96AECD">
+	            						<!--  <img border="0" src="/DCWeb/form/resources/gif/arrow.gif" width="10" height="20">-->
+	            						&gt;&gt;
+	            					</font>
+	            					</b>
+	            				</td>
+	            				 <td class="MTTD2" style="border:0" width="50%" height="15" nowrap="nowrap" align="left">
+	            				 	<font size="1" face="Verdana" color="#524D36" style = rig> 	
+	            				 	
+	            				 	<a style="text-decoration:none"  href="https://pict.ethdigitalcampus.com:443/DCWeb/form/jsp_StudentAttendance_PICT/DeleteStudentAttendance.jsp?loginid=EMP680"  onclick="passValues('268','EMP680','152.57.133.26');" >
+	            				 			               				 	
+                               		
+                               			<b><font size="1" color="#524D36" >Delete Student Attendance</font></b> 
+                               			
+                               		</a>
+                                </td>
+                                
+                                
+							
+
+							</tr><tr>
+
+
+                                <td width="10" height="15" align="left">
+                                	<b>
+                                	<font face="Verdana" size="1" color="#96AECD">
+	            						<!--  <img border="0" src="/DCWeb/form/resources/gif/arrow.gif" width="10" height="20">-->
+	            						&gt;&gt;
+	            					</font>
+	            					</b>
+	            				</td>
+	            				 <td class="MTTD2" style="border:0" width="50%" height="15" nowrap="nowrap" align="left">
+	            				 	<font size="1" face="Verdana" color="#524D36" style = rig> 	
+	            				 	
+	            				 	<a style="text-decoration:none"  href="https://pict.ethdigitalcampus.com:443/DCWeb/form/jsp_reports/CTLredirect.jsp?loginid=EMP680"  onclick="passValues('758','EMP680','152.57.133.26');" >
+	            				 			               				 	
+                               		
+                               			<b><font size="1" color="#524D36" >CTL</font></b> 
+                               			
+                               		</a>
+                                </td>
+                                
+                                
+							
+
+
+                                <td width="10" height="15" align="left">
+                                	<b>
+                                	<font face="Verdana" size="1" color="#96AECD">
+	            						<!--  <img border="0" src="/DCWeb/form/resources/gif/arrow.gif" width="10" height="20">-->
+	            						&gt;&gt;
+	            					</font>
+	            					</b>
+	            				</td>
+	            				 <td class="MTTD2" style="border:0" width="50%" height="15" nowrap="nowrap" align="left">
+	            				 	<font size="1" face="Verdana" color="#524D36" style = rig> 	
+	            				 	
+	            				 	<a style="text-decoration:none"  href="https://pict.ethdigitalcampus.com:443/DCWeb/form/jsp_StudentAttendance_PICT/BatchwiseAttendanceParam_PICT.jsp?loginid=EMP680"  onclick="passValues('820','EMP680','152.57.133.26');" >
+	            				 			               				 	
+                               		
+                               			<b><font size="1" color="#524D36" >Batch Wise Attendance</font></b> 
+                               			
+                               		</a>
+                                </td>
+                                
+                                
+							
+
+							</tr>
+  	
+	        <tr>
+			<td width="10" height="15" align="left">&nbsp;</td>
+		    <td width="50%" height="15" nowrap="nowrap" align="left">&nbsp;</td>
+		    <td width="10" height="15" align="left">&nbsp;</td>
+		    <td width="50%" height="15" nowrap="nowrap" align="left">&nbsp;</td>
+		    </tr>
+	
+	        <tr>
+			<td width="10" height="15" align="left">&nbsp;</td>
+		    <td width="50%" height="15" nowrap="nowrap" align="left">&nbsp;</td>
+		    <td width="10" height="15" align="left">&nbsp;</td>
+		    <td width="50%" height="15" nowrap="nowrap" align="left">&nbsp;</td>
+		    </tr>
+	 
+                        </table>
+                    	</td>
+      				</tr><!--Activity list ends-->
+      	
+      			</table>
+      			
+      			
+
+      		</td><!-- End Displaying Service Description and Activity list-->
+      		</tr>
+ 	</table> <!-- Maintable Ends Here-->    
+
+  
+  
+  </form>
+  </body>
+  <!-- Footer Starts -->
+   
+
+<!-- Footer Starts -->
+
+ 
+				<br>
+					<table width="100%"   cellpadding="0" cellspacing="0" >
+						
+						<tr>
+							<td  colspan="2" align="right">
+					
+							<font face="Verdana" size="1" color="#666666">
+							
+							
+							<a style="text-decoration:none" href = "/DCWeb/form/jsp_common/ContactUs.jsp"> <font  color="#666666"> Contact Us </font> </a>
+							
+							| 
+							
+														
+								<a style="text-decoration:none" href = "/DCWeb/form/jsp_common/AboutDS.jsp"> <font  color="#666666"> About Digital Campus </font> </a>
+							
+							</font>
+							<hr size=1 width="100%">
+							</td>
+							</tr>
+
+							<tr>
+							<td colspan="2" align="right" style="background-color: #EEEEEE;">
+
+							<font face="Verdana" size="1" color="#666666">Best Viewed in 1024 * 768 pixels <br> © ETH Ltd. 
+							</font></td>
+							</tr>
+							</table>
+
+							</td>
+						</tr>
+					</table>
+			</td>
+		</tr>
+	</table>
+ 	
+
+<!-- footer ends -->
+
+ 
+
+
+
+
+  <!-- Footer Ends -->
+</html>

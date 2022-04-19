@@ -1,0 +1,576 @@
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">     
+<html>
+<head>
+<base href="https://pict.ethdigitalcampus.com:443/DCWeb/">
+<link rel= "stylesheet" type= "text/css" href="css/s_ecube.css">
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>Mark Attendance Parameter</title>
+  <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="This is my page">
+    <link rel= "stylesheet" type= "text/css" href="/container/resources/stylesheet/s_ecube.css">    
+    <script language="javascript1.2" src="/container/resources/validation/validation.js">
+    <script language="javascript1.2" src="/container/resources/validation/calendar1.js">
+	              
+    </SCRIPT>
+</head>
+<SCRIPT>
+//-------------------------------------------------------------------------------------------------------------------
+function Validation(flag)
+{
+		// alert('flag-->'+ flag); //alert("Validation");
+		if(flag == 1)
+		{
+		
+			if(document.MarkAttendanceParam_frm.theory_subject_combo.value=="0")
+		    {				
+					alert("Please Select Subject");					
+					document.MarkAttendanceParam_frm.subject_combo.focus();
+					return false;				
+			 }   
+		}
+		if(flag == 2)
+		{
+			if(document.MarkAttendanceParam_frm.practical_subject_combo.value=="0")
+		    {				
+					alert("Please Select Subject");					
+					document.MarkAttendanceParam_frm.subject_combo.focus();
+					return false;				
+			 }   
+		}
+		
+        if(isBlank(document.MarkAttendanceParam_frm.attendanceDate_txt.value)|| isNull(document.MarkAttendanceParam_frm.attendanceDate_txt.value))
+		{
+			alert("Please enter attendance date.");
+			document.MarkAttendanceParam_frm.attendanceDate_txt.value="";
+			document.MarkAttendanceParam_frm.attendanceDate_txt.focus();
+			return false;
+		}
+		
+							var startDate=document.MarkAttendanceParam_frm.sys_date.value;
+							var attDate=document.MarkAttendanceParam_frm.attendanceDate_txt.value;
+						/*	
+					if(compareDate(startDate,attDate))
+					{
+						alert("Please Do not Enter future Date");
+						document.MarkAttendanceParam_frm.attendanceFromDate_txt.focus();
+		                	return false;
+					}
+
+	var today = new Date();
+				var currDay = today.getDate();
+				var currMonth = today.getMonth()+1;
+				var currYear = today.getFullYear();
+				
+				
+			var date=document.MarkAttendanceParam_frm.attendanceDate_txt.value;
+		    var arr = date.split("-");
+		    var day=arr[0];
+		     var month=arr[1];
+		      var year=arr[2];
+			  console.log(date);
+	 console.log(day);
+		 console.log("30");
+		 console.log("3");
+		 */
+			
+			/*
+			Anoop's New Date Logic Test 1 on 30 Jan 2020
+			*/
+
+			var attendanceDate = document.MarkAttendanceParam_frm.attendanceDate_txt.value; //30-01-2020
+			if(attendanceDate==null || attendanceDate==""){
+				alert("Please select Attendance Date.");
+				return false;
+			}
+			var dateObj = new Date();
+			var dayVal = dateObj.getDay();
+			if(dayVal==0){
+				dayVal = 7;
+			}
+			dateObj.setDate(dateObj.getDate() - (dayVal - 1));
+			var modDateObj = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
+			var currentDateObj = new Date();
+			var selectedDateObj = new Date(attendanceDate.split("-")[2], (parseInt(attendanceDate.split("-")[1]) - 1), attendanceDate.split("-")[0]);
+			/* working fine && "EMP680"!='EMP13'
+			if(selectedDateObj >= modDateObj && selectedDateObj <= currentDateObj){
+				
+			}
+			*/
+			if(selectedDateObj < modDateObj && "EMP680"!='EMP13'){
+				alert("Attendance Marking Period is over please contact to Principal Sir");
+				return false;
+			}else if(selectedDateObj > currentDateObj ){
+				alert("Please Do not Enter future Date");
+				return false;
+			}
+			
+			/*End of Logic */
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+					
+			
+			
+			
+        var checkBoxCount = getSelectedChkboxCount("MarkAttendanceParam_frm","lectureNo_chkbx");
+		if (checkBoxCount < 1)
+		{
+			alert("Please select lecture no");	
+			return false;
+		}else 
+		{
+        		
+        		  document.MarkAttendanceParam_frm.action ="/DCWeb/form/jsp_StudentAttendance_PICT/MarkAttendance_continue_PICT.jsp?flag="+flag;	
+        		  document.MarkAttendanceParam_frm.submit();  
+		}
+        
+						
+}//end of validation
+//-------------------------------------------------------------------------------------------------------------------
+function isBlank(val)
+{
+//alert("In is blank funct");
+		if(val==null)
+		{
+			return true;
+		}
+		for(var i=0;i<val.length;i++)	
+		{
+			if ((val.charAt(i)!=' ')&&(val.charAt(i)!="\t")&&(val.charAt(i)!="\n")&&(val.charAt(i)!="\r"))	
+			{
+				return false;
+			}
+		}
+		return true;
+}//end of function isBlank()
+//-------------------------------------------------------------------------------------------------------------------
+
+		function isNull(val)	
+			{
+				return(val==null);
+			}//endo of isNull()
+			
+		function compareDate(joinDt, instiDt)
+		{
+			var jdate=joinDt.substr(0,2);
+			if(jdate.substr(1,1) == '-')
+			{
+				jdate = '0'+jdate.substr(0,1);
+				joinDt = jdate + joinDt.substr(1,joinDt.length-1);
+			}	
+
+			var jmon=joinDt.substr(3,2);
+			if(jmon.substr(1,1) == '-')
+			{
+				jmon = '0'+jmon.substr(0,1);
+				joinDt = jdate +'-'+jmon +joinDt.substr(4,joinDt.length-1);	
+			}	
+
+			var jyear=joinDt.substr(6,4);
+
+			var idate=instiDt.substr(0,2);
+			if(idate.substr(1,1) == '-')
+			{
+				idate = '0'+idate.substr(0,1);
+				instiDt = idate + instiDt.substr(1,instiDt.length-1);	
+			}	
+
+			var imon=instiDt.substr(3,2);
+			if(imon.substr(1,1) == '-')
+			{	imon = '0'+imon.substr(0,1);
+				instiDt = idate +'-'+imon + instiDt.substr(4,instiDt.length-1);	
+			}	
+
+			var iyear=instiDt.substr(6,4);
+
+			if(eval(jyear)>eval(iyear))
+			{
+				return false;
+			}
+			else if(eval(jyear)== eval(iyear) && eval(jmon)>eval(imon))
+			{
+				return false;
+			}
+			else if(eval(jyear)== eval(iyear) && eval(jmon)==eval(imon)&& eval(jdate)>=eval(idate))
+			{
+				return false;
+			}
+			return true;
+		}//end of compareDate
+
+	
+//-------------------------------------------------------------------------------------------------------------------
+		function callCalendar1(obj1,datetxt)
+			 {
+				var cal1 = new calendar1(document.forms['MarkAttendanceParam_frm'].elements[datetxt]);
+				cal1.year_scroll = true;
+				cal1.time_comp = false; 
+			    cal1.popup();
+				   
+			} 
+//-----------------------------------------------------------------------------------------------------------------
+			function calendar1(obj_target)
+			{
+				this.popup    = cal_popup1;
+
+				// validate input parameters
+				if (!obj_target)
+					return cal_error("Error calling the calendar: no target control specified");
+				if (obj_target.value == null)
+					return cal_error("Error calling the calendar: parameter specified is not valid tardet control");
+				this.target = obj_target;
+				this.time_comp = false;
+				this.year_scroll = false;
+			}
+//--------------------------------------------------------------------------------------------------------------
+			function cal_popup1 () 
+			{
+				this.dt_current =this.target.value;
+				var obj_calwindow = window.open(
+					'/DCWeb/form/jsp_common/calendar.jsp?datetime=' + this.dt_current.valueOf() + '&name='+encodeURIComponent(this.target.name)+'&frmname='+this.target.form.name,'Calendar', 'width=360,height='+(this.time_comp ? 215 : 210)+
+					',status=no,resizable=no,top=200,left=200,dependent=yes,alwaysRaised=yes'
+				);
+				obj_calwindow.opener = window;
+				obj_calwindow.focus();
+			}
+// -----------------------------------------------------------------------------------------------------------------
+		function setFlagaonRadio()
+		{
+					
+					
+		} // end of disableRadio1
+// ------------------------------------------------------------------------------------------------------------------
+		function reLoadPage1()
+		{
+				 var flag;
+			 	
+					document.MarkAttendanceParam_frm.action = "/DCWeb/form/jsp_StudentAttendance_PICT/MarkAttendanceParameter_PICT.jsp?flag=1"; 	
+					document.MarkAttendanceParam_frm.submit();
+				
+	
+		}
+//----------------------------------------------------------------------------------------------------------------
+		function reLoadPage2()
+		{
+					var flag;
+			 		document.MarkAttendanceParam_frm.action = "/DCWeb/form/jsp_StudentAttendance_PICT/MarkAttendanceParameter_PICT.jsp?flag=2"; 	
+					document.MarkAttendanceParam_frm.submit();
+		}
+//----------------------------------------------------------------------------------------------------------------
+		function getSelectedChkboxCount(formNameString, checkboxNameString)	
+			{	
+					var	tempString		= "";
+					var	noOfFields		= eval("window.document." + formNameString + ".elements.length");
+					var	checkBoxCount	= 0;
+					var	counter			= 0;
+					var notSelected     = 0;
+		
+					for(;counter < noOfFields; counter++)
+					{
+						tempString	= "document." + formNameString + ".elements[" + counter + "]";
+						if(	eval(tempString + ".type") == 'checkbox' && eval(tempString + ".id") == checkboxNameString	)
+						{
+								if(eval(tempString + ".checked") == true)
+								{
+									checkBoxCount++;
+								}
+								else
+								{
+									  notSelected++;
+								}
+						}
+					}
+					return checkBoxCount;
+			}   //end of getSelectedChkboxCount()
+//------------------------------------------------------------------------------------------------------------------------
+
+</SCRIPT>
+<body background="/container/resources/gif/backgrund-page.gif" leftmargin="0" rightmargin="0" topmargin="0">
+<form name=MarkAttendanceParam_frm  method="post" action="">
+<input type="hidden" name="sys_date" value="30-03-2021" >
+
+
+
+
+		<link rel= "stylesheet" type= "text/css" href="/container/resources/stylesheet/s_ecube.css">
+		
+
+
+
+<!-- Header  -->
+  <!-- Apply Language Starts -->
+   
+
+
+	
+<style> TD { font-family: Verdana; font-size: 10 } FORM { font-family: Verdana; font-size: 10 } INPUT { font-family: Verdana; font-size: 10 } BODY { font-family: Verdana; font-size: 10 } TABLE { font-family: Verdana; font-size: 10 } TEXTAREA { font-family: Verdana; font-size: 10 } MARQUEE { font-family: Verdana; font-size: 10 } SELECT { font-family: Verdana; font-size: 10 } </style>
+
+	<script language="JavaScript"  src="/container/resources/validation/Parser.js"></script>
+	<script language="JavaScript" >
+		isEng = true;
+	</script>
+
+
+<style>
+td.MTTD2
+      { 	
+	background-color: #FFFFFF;
+	border: 1 solid #EEEEEE;
+	border-collapse: collapse;
+	cellspacing		:0;
+	cellpadding		:0;
+	font-family: Verdana;
+	font-size: 10;
+	color: #333333;
+	text-align:left;
+	}
+</style>
+
+
+
+
+  <!-- Apply Language Ends -->
+  <script>
+	function callTogglelocalLang(locallang){
+  	    var frmlocation='';
+  	    if(frmlocation=='')
+  	    {
+	  	    document.headerForm.localLang.value=locallang;
+	    	document.headerForm.submit();
+  	    }
+  	    else{
+	  	    if(frmlocation.indexOf('?')==-1)
+	  	    {
+		  	    frmlocation=frmlocation+"?localLang="+locallang;
+	  	    }
+	  	    else
+	  	    {
+		  	    frmlocation=frmlocation+"&localLang="+locallang;
+	  	    }
+  	        document.location=frmlocation;
+  	    }
+    }
+   
+    </script>
+<br>
+	
+<input type="hidden" name="localLang" value="en">
+<table border="1" width="95%" cellpadding="0" align=center cellspacing="0" style="border: 10 solid #DFDCCE; border-collapse: collapse" bgcolor="#FFFFFF">
+		<tr>
+			<td  valign="top" align="left">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0"  style="border-collapse: collapse" background="/container/resources/gif/new/topbandbg.gif" bgcolor="#EFEFDE">
+					<tr>
+						<td valign="top" align="left" background="/container/resources/gif/new/topbandbg.gif" bgcolor="#EFEFDE">
+						</td>
+						<td bgcolor="#EFEFDE" background="/container/resources/gif/new/topbandbg.gif"  align="left">
+							 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/container/resources/gif/logos/PICT/pict_logo.png"  width="98" height="100" >
+							</td>
+
+						<td>
+							<img src="/container/resources/gif/new/topbandbg.gif" width="75" height="63">
+						</td>
+
+						<td   valign="top" align="right" background="/container/resources/gif/new/topbandbg.gif" bgcolor="#EFEFDE">
+						</td>
+						
+						<td align="right" valign="center">
+						   <img src="/container/resources/gif/logos/logo.gif" width="228" height="67" >
+							<!--<img src="/container/resources/gif/innertopband.gif" width="520" height="67">-->
+						</td>
+					</tr>
+				</table>
+	    		
+				<table width="100%"  border="1" cellpadding="0" cellspacing="0" style="border: 6 solid #EFEFDE; border-collapse: collapse" bgcolor="#EFEFDE">
+					<tr>
+						<td   align="left">&nbsp;
+						
+					 	&nbsp;&nbsp; <b></b>
+				  
+						</td>
+						<td align="right">
+						<align="left" style="margin-right: 10"><font size="1.4" face="Verdana" color="#524D36" style = rig>
+						
+						
+						<a style="text-decoration:none" href="https://pict.ethdigitalcampus.com:443/DCWeb/form/jsp_aaa/Authenticate.jsp" ><b><font  color="#524D36" >Activities</font></b></a> | 
+						
+						
+						<a style="text-decoration:none" href="https://pict.ethdigitalcampus.com:443/DCWeb/form/jsp_common/dashBoardDetails.jsp" ><b><font  color="#524D36" >Dashboard</font> </b></a> | 
+						
+						<a style="text-decoration:none" href="https://pict.ethdigitalcampus.com:443/DCWeb/servlet/LogOut" ><b><font  color="#524D36" >Log Out</font> </b></a> 
+						
+						</font>
+						</td>
+
+						
+					</tr>
+					
+					<tr>
+				    <td  colspan="2">
+						<MARQUEE SCROLLDELAY=1000>
+						
+						<align="right" style="margin-right: 10"><font size="1.4" face="Verdana" color="#524D36" style = rig>
+						<b>
+						
+							 Hi ! CHETAN CHANDRAKANT PAWAR 
+
+						
+						</b>						
+						</MARQUEE>
+						
+						</td>
+					</tr>
+	 		
+				</table>
+				
+
+ 
+ 
+ 
+   				<tr>
+					<td align="center">
+						<br>
+
+		
+		
+ 		
+    
+			
+
+		<table class="maintable" align="center" border="0" cellpadding="0" width="100%">
+			<tr align="center">
+				<td class="MTTD1" valign="top" align="center" width="100%" id="msg_display" style="display:block"><b>Attendance Allready Marked<b></td>
+			</tr>
+		</table>
+
+		<table class="maintable" align="center">  
+		  <tr>
+		  		<td class="MTTD1" align="center" colspan="8"><b>Mark Attendance</b></td>
+		  </tr>
+		  <tr>
+		  				<td></td>
+		  				<td class="MTTD2" align="left" colspan=3> 
+		  				
+					        <input type="radio" id="1" name="attendance_type_radio" value="I"  onclick="reLoadPage1();"/><b>Subjectwise</b> &nbsp;&nbsp;
+					     	<input type="radio" id="2" name="attendance_type_radio" value="II" checked onclick="reLoadPage2();"/><b>Batchwise </b>&nbsp;&nbsp;
+						</td>
+		  </tr>
+		  
+
+			    <tr >
+			    <TD class=MTTD2 vAlign=top align=right width="20%" ><b>Subject:</b></TD>
+      	 		
+				<TD class=MTTD2 vAlign=top align=right width="20%" >
+      	 		<select name="practical_subject_combo"  onChange="">
+		      	<option value="0">--select--</option>
+    	    	
+						 <option value="1019$36$10639$0$PROJECT BASED LEARNING LAB$SE E&TC SEM 2$G8" selected>PROJECT BASED LEARNING LAB G8</option>
+						
+						 <option value="1019$36$10634$0$PROJECT BASED LEARNING LAB$SE E&TC SEM 2$F7" selected>PROJECT BASED LEARNING LAB F7</option>
+						
+						 <option value="1019$36$10635$0$PROJECT BASED LEARNING LAB$SE E&TC SEM 2$F8" selected>PROJECT BASED LEARNING LAB F8</option>
+						
+						 <option value="1019$36$10630$0$PROJECT BASED LEARNING LAB$SE E&TC SEM 2$E6" selected>PROJECT BASED LEARNING LAB E6</option>
+						
+				</select>				
+				</td> 
+				</tr>
+				
+				<tr>
+		  		<TD class=MTTD2 vAlign=top align=right width="20%" ><b>Attendance Date :</b></TD>
+		   		<TD class=MTTD2 vAlign=top align=right width="80%" > <input type="text" name="attendanceDate_txt"  value="30-03-2021" maxlength=10/> 
+				<a href="javascript:callCalendar1('document.MarkAttendanceParam_frm.attendanceDate_txt','attendanceDate_txt');">
+			       		 <img name="calendar" src="/container/resources/gif/cal.gif" width="16" height="16" border="0" alt=" Click here to pick up date"> </a>
+			    </TD>
+		  </tr>
+		 <!-- <tr>
+		  		<TD class=MTTD2 vAlign=top align=right width="20%" style="display: none;"><b>Reason :</b></TD>
+		  		<TD class=MTTD2 align=middle style="width:17%;" colSpan=0 style="display: none;">	
+		  			<FONT size=>
+		  				<b>
+		  					<textarea name="reason_txtarea" rows=3 cols=30 > 
+		  					</textarea>
+		  				</b></FONT>	
+		  		</TD>
+		  </tr> -->
+		   <tr>
+		  		<TD class=MTTD2 vAlign=top align=right width="20%" ><b>Total No Of Lectures Conducted :</b></TD>
+		   		<td class="MTTD2" align="center"><b>1&nbsp;</b><INPUT TYPE="checkbox" NAME="lectureNo_chkbx" id="lectureNo_chkbx" value="1">&nbsp;
+		   										 <b>2&nbsp;</b><INPUT TYPE="checkbox" NAME="lectureNo_chkbx" id="lectureNo_chkbx" value="2">&nbsp;
+		   										 <b>3&nbsp;</b><INPUT TYPE="checkbox" NAME="lectureNo_chkbx" id="lectureNo_chkbx" value="3">&nbsp;
+		   										 <b>4&nbsp;</b><INPUT TYPE="checkbox" NAME="lectureNo_chkbx" id="lectureNo_chkbx" value="4">
+		   		</td>				 				
+		  </tr>
+		  <tr height=25>
+				<TD class=MTTD8 vAlign=top align=center width="30%" colspan=2><INPUT class=btn type=button value="Show" name=create onclick="Validation('2');"/></TD>
+		  </tr>
+		</table>
+</form>
+
+	 
+
+<!-- Footer Starts -->
+
+ 
+				<br>
+					<table width="100%"   cellpadding="0" cellspacing="0" >
+						
+						<tr>
+							<td  colspan="2" align="right">
+					
+							<font face="Verdana" size="1" color="#666666">
+							
+							
+							<a style="text-decoration:none" href = "/DCWeb/form/jsp_common/ContactUs.jsp"> <font  color="#666666"> Contact Us </font> </a>
+							
+							| 
+							
+														
+								<a style="text-decoration:none" href = "/DCWeb/form/jsp_common/AboutDS.jsp"> <font  color="#666666"> About Digital Campus </font> </a>
+							
+							</font>
+							<hr size=1 width="100%">
+							</td>
+							</tr>
+
+							<tr>
+							<td colspan="2" align="right" style="background-color: #EEEEEE;">
+
+							<font face="Verdana" size="1" color="#666666">Best Viewed in 1024 * 768 pixels <br> © ETH Ltd. 
+							</font></td>
+							</tr>
+							</table>
+
+							</td>
+						</tr>
+					</table>
+			</td>
+		</tr>
+	</table>
+ 	
+
+<!-- footer ends -->
+
+ 
+
+
+
+ 
+</body>
+</html>

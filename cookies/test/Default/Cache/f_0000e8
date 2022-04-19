@@ -1,0 +1,2569 @@
+
+
+
+
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css"
+			href="/container/resources/stylesheet/s_ecube.css">
+
+		<meta http-equiv="Content-Type"
+			content="text/html; charset=ISO-8859-1">
+		<title>Mark Attendence</title>
+		<script>
+//--------------------------------------------------------------------------------------------------------------
+			function resetthis()
+       		{ 
+				document.location.reload();
+       		}		
+//--------------------------------------------------------------------------------------------------------------
+			function getSelectedChkboxCount(formNameString, checkboxNameString)	
+			{	
+					var	tempString		= "";
+					var	noOfFields		= eval("window.document." + formNameString + ".elements.length");
+					var	checkBoxCount	= 0;
+					var	counter			= 0;
+					var notSelected     = 0;
+
+					for(;counter < noOfFields; counter++)
+					{
+						tempString	= "document." + formNameString + ".elements[" + counter + "]";
+						if(	eval(tempString + ".type") == 'checkbox' && eval(tempString + ".id") == checkboxNameString	)
+						{
+								if(eval(tempString + ".checked") == true)
+								{
+									checkBoxCount++;
+								}
+								else
+								{
+									  notSelected++;
+								}
+						}
+					}
+					if(notSelected == 0) 
+					return checkBoxCount;
+					else 
+					return -1;
+			}   //end of getSelectedChkboxCount()
+//--------------------------------------------------------------------------------------------------------------
+			function checkAll(checkboxNameString1,checkboxNameString2)
+			{
+					
+					
+					var all = getSelectedCheckboxCount("MarkAttendence_frm",checkboxNameString1);
+					var formElementLen = document.MarkAttendence_frm.elements.length;
+						 if(all==1)
+						 {
+						  	for(i=0 ; i<formElementLen; i++)
+						 	 {
+		   					 if(document.MarkAttendence_frm.elements[i].type == 'checkbox' && document.MarkAttendence_frm.elements[i].id==checkboxNameString2)
+		      				  document.MarkAttendence_frm.elements[i].checked=true;
+						 	 }
+						  }
+						 else
+						  {
+								 for(i=0 ; i<formElementLen; i++)
+								 {
+		  						  if(document.MarkAttendence_frm.elements[i].type == 'checkbox' && document.MarkAttendence_frm.elements[i].id==checkboxNameString2)
+		     					   document.MarkAttendence_frm.elements[i].checked=false;
+								 }
+						   }
+			}//end of function checkAll()
+			
+//--------------------------------------------------------------------------------------------------------------
+			function uncheckSelectAll(checkboxNameString2,checkboxNameString1)
+			{
+						var all = getSelectedChkboxCount("MarkAttendence_frm",checkboxNameString2);
+						var checkAll = 'document.MarkAttendence_frm.' + checkboxNameString1 + '.checked';
+						
+						if (all == -1)
+							document.getElementById(checkboxNameString1).checked = false;    //document.MarkAttendence_frm.checkboxNameString1.checked = false;							
+						else	
+							document.getElementById(checkboxNameString1).checked = true;   //document.MarkAttendence_frm.selectAll.checked=true;
+
+			}//end of function uncheckSelectAll()
+			
+//--------------------------------------------------------------------------------------------------------------
+			function getSelectedCheckboxCount(formNameString, checkboxNameString)  
+			{
+						 var tempString = "";
+						     var noOfFields = eval("window.document." + formNameString +".elements.length");
+		 				 var checkBoxCount = 0;
+						 var counter = 0;
+
+							  for(;counter < noOfFields; counter++) 
+							  {
+		        				 tempString = "document." + formNameString + ".elements[" + counter + "]";
+		       					  if(eval(tempString + ".type") == 'checkbox'&& eval(tempString + ".name.substring(0, " + checkboxNameString.length + ")") == checkboxNameString  )  
+		       					  {
+
+		                       				 if(eval(tempString + ".checked") == true)      
+		                       				 {
+		                               					  checkBoxCount++;
+		                          			 }
+		        				 }
+							   }
+
+					 return checkBoxCount;
+				} // end of getSelectedCheckboxCount
+//--------------------------------------------------------------------------------------------------------------
+			function submitPage1(str)  
+			{
+				var a = str.split("@") // Delimiter is a string
+				
+				var formNameString      ="MarkAttendence_frm";
+				var checkboxNameString  ="";
+				var	tempString		    = "";
+				var	noOfFields			= eval("window.document." + formNameString + ".elements.length");
+				var	checkBoxCount		= 0;
+				var notSelected     	= 0;
+				var lecture_wise_student = "";
+				var student = "";
+				var multiple_student = "";
+				for (var i = 0; i < a.length ,a[i]!=""; i++)     // loop to change lecture no
+				{
+					 var checkboxNameString  = a[i] + "MarkAttendanceCHK";					  
+					 multiple_student = "";
+					for(var counter = 0 ; counter < noOfFields; counter++)
+					{
+						tempString	= "document." + formNameString + ".elements[" + counter + "]";
+						if(	eval(tempString + ".type") == 'checkbox' && eval(tempString + ".id") == checkboxNameString	)
+						{
+								student = "";
+								if(eval(tempString + ".checked") == true)
+								{
+									student = eval(tempString + ".value") + "%" +"A";
+									checkBoxCount++;
+								}
+								else
+								{									  
+									  student = eval(tempString + ".value") + "%" +"P";
+									  notSelected++;
+								}
+								// multiple_student= multiple_student + "$" + student;
+								 multiple_student= multiple_student + "$" + student;
+						}
+					} // end of for(;counter < noOfFields; counter++					
+					
+					lecture_wise_student = lecture_wise_student + "*" + a[i] + "=" + multiple_student;
+				}// end of for (var i = 0; i < a.length; i++) 
+				if(checkBoxCount==0)
+				{
+					alert("select atleast one checkbox");					
+				}
+				else
+				{
+					  
+					document.MarkAttendence_frm.attendanceData.value = lecture_wise_student;
+					document.MarkAttendence_frm.action="/DCWeb/form/jsp_StudentAttendance_PICT/InsertStudentAttendance_PICT.jsp";
+	                document.MarkAttendence_frm.submit();
+				}
+				return false;
+
+				
+			}
+//---------------------------------------------------------------------------------------------------------------
+			function submitPage2(str)  
+			{
+				var a = str.split("@") // Delimiter is a string
+				
+				var formNameString      ="MarkAttendence_frm";
+				var checkboxNameString  ="";
+				var	tempString		    = "";
+				var	noOfFields			= eval("window.document." + formNameString + ".elements.length");
+				var	checkBoxCount		= 0;
+				var notSelected     	= 0;
+				var lecture_wise_student = "";
+				var student = "";
+				var multiple_student = "";
+				for (var i = 0; i < a.length ,a[i]!=""; i++)     // loop to change lecture no
+				{
+					 var checkboxNameString  = a[i] + "MarkAttendanceCHK";					  
+					 multiple_student = "";
+					for(var counter = 0 ; counter < noOfFields; counter++)
+					{
+						tempString	= "document." + formNameString + ".elements[" + counter + "]";
+						if(	eval(tempString + ".type") == 'checkbox' && eval(tempString + ".id") == checkboxNameString	)
+						{
+								student = "";
+								if(eval(tempString + ".checked") == true)
+								{
+									student = eval(tempString + ".value") + "%" +"P";
+									checkBoxCount++;
+								}
+								else
+								{									  
+									  student = eval(tempString + ".value") + "%" +"A";
+									  notSelected++;
+								}
+								 multiple_student= multiple_student + "$" + student;
+						}
+					} // end of for(;counter < noOfFields; counter++					
+					
+					lecture_wise_student = lecture_wise_student + "*" + a[i] + "=" + multiple_student;
+				}// end of for (var i = 0; i < a.length; i++) 
+				if(checkBoxCount==0)
+				{
+					alert("select atleast one checkbox");					
+				}
+				else
+				{
+					  
+					document.MarkAttendence_frm.attendanceData.value = lecture_wise_student;
+					document.MarkAttendence_frm.action="/DCWeb/form/jsp_StudentAttendance_PICT/InsertStudentAttendance_PICT.jsp";
+	                document.MarkAttendence_frm.submit();
+				}
+				return false;
+
+				
+			}
+//---------------------------------------------------------------------------------------------------------------
+
+
+			</script>
+	</head>
+
+	<body onload="setFocusOnLoad();"
+		background="/container/resources/gif/backgrund-page.gif"
+		leftmargin="0" rightmargin="0" topmargin="0">
+		<form name=MarkAttendence_frm method="post" action="">
+			
+
+
+		<link rel= "stylesheet" type= "text/css" href="/container/resources/stylesheet/s_ecube.css">
+		
+
+
+
+<!-- Header  -->
+  <!-- Apply Language Starts -->
+   
+
+
+	
+<style> TD { font-family: Verdana; font-size: 10 } FORM { font-family: Verdana; font-size: 10 } INPUT { font-family: Verdana; font-size: 10 } BODY { font-family: Verdana; font-size: 10 } TABLE { font-family: Verdana; font-size: 10 } TEXTAREA { font-family: Verdana; font-size: 10 } MARQUEE { font-family: Verdana; font-size: 10 } SELECT { font-family: Verdana; font-size: 10 } </style>
+
+	<script language="JavaScript"  src="/container/resources/validation/Parser.js"></script>
+	<script language="JavaScript" >
+		isEng = true;
+	</script>
+
+
+<style>
+td.MTTD2
+      { 	
+	background-color: #FFFFFF;
+	border: 1 solid #EEEEEE;
+	border-collapse: collapse;
+	cellspacing		:0;
+	cellpadding		:0;
+	font-family: Verdana;
+	font-size: 10;
+	color: #333333;
+	text-align:left;
+	}
+</style>
+
+
+
+
+  <!-- Apply Language Ends -->
+  <script>
+	function callTogglelocalLang(locallang){
+  	    var frmlocation='';
+  	    if(frmlocation=='')
+  	    {
+	  	    document.headerForm.localLang.value=locallang;
+	    	document.headerForm.submit();
+  	    }
+  	    else{
+	  	    if(frmlocation.indexOf('?')==-1)
+	  	    {
+		  	    frmlocation=frmlocation+"?localLang="+locallang;
+	  	    }
+	  	    else
+	  	    {
+		  	    frmlocation=frmlocation+"&localLang="+locallang;
+	  	    }
+  	        document.location=frmlocation;
+  	    }
+    }
+   
+    </script>
+<br>
+	
+<input type="hidden" name="localLang" value="en">
+<table border="1" width="95%" cellpadding="0" align=center cellspacing="0" style="border: 10 solid #DFDCCE; border-collapse: collapse" bgcolor="#FFFFFF">
+		<tr>
+			<td  valign="top" align="left">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0"  style="border-collapse: collapse" background="/container/resources/gif/new/topbandbg.gif" bgcolor="#EFEFDE">
+					<tr>
+						<td valign="top" align="left" background="/container/resources/gif/new/topbandbg.gif" bgcolor="#EFEFDE">
+						</td>
+						<td bgcolor="#EFEFDE" background="/container/resources/gif/new/topbandbg.gif"  align="left">
+							 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/container/resources/gif/logos/PICT/pict_logo.png"  width="98" height="100" >
+							</td>
+
+						<td>
+							<img src="/container/resources/gif/new/topbandbg.gif" width="75" height="63">
+						</td>
+
+						<td   valign="top" align="right" background="/container/resources/gif/new/topbandbg.gif" bgcolor="#EFEFDE">
+						</td>
+						
+						<td align="right" valign="center">
+						   <img src="/container/resources/gif/logos/logo.gif" width="228" height="67" >
+							<!--<img src="/container/resources/gif/innertopband.gif" width="520" height="67">-->
+						</td>
+					</tr>
+				</table>
+	    		
+				<table width="100%"  border="1" cellpadding="0" cellspacing="0" style="border: 6 solid #EFEFDE; border-collapse: collapse" bgcolor="#EFEFDE">
+					<tr>
+						<td   align="left">&nbsp;
+						
+					 	&nbsp;&nbsp; <b></b>
+				  
+						</td>
+						<td align="right">
+						<align="left" style="margin-right: 10"><font size="1.4" face="Verdana" color="#524D36" style = rig>
+						
+						
+						<a style="text-decoration:none" href="https://pict.ethdigitalcampus.com:443/DCWeb/form/jsp_aaa/Authenticate.jsp" ><b><font  color="#524D36" >Activities</font></b></a> | 
+						
+						
+						<a style="text-decoration:none" href="https://pict.ethdigitalcampus.com:443/DCWeb/form/jsp_common/dashBoardDetails.jsp" ><b><font  color="#524D36" >Dashboard</font> </b></a> | 
+						
+						<a style="text-decoration:none" href="https://pict.ethdigitalcampus.com:443/DCWeb/servlet/LogOut" ><b><font  color="#524D36" >Log Out</font> </b></a> 
+						
+						</font>
+						</td>
+
+						
+					</tr>
+					
+					<tr>
+				    <td  colspan="2">
+						<MARQUEE SCROLLDELAY=1000>
+						
+						<align="right" style="margin-right: 10"><font size="1.4" face="Verdana" color="#524D36" style = rig>
+						<b>
+						
+							 Hi ! CHETAN CHANDRAKANT PAWAR 
+
+						
+						</b>						
+						</MARQUEE>
+						
+						</td>
+					</tr>
+	 		
+				</table>
+				
+
+ 
+ 
+ 
+   				<tr>
+					<td align="center">
+						<br>
+
+		
+		
+ 		
+    
+			
+
+			
+			<input type="hidden" name="attendanceData">
+
+
+			<table class="maintable" align="center" style="width:800px">
+
+				<tr>
+					<TD class=MTTD1 vAlign=top align=left width="20%" colspan="2">
+						<b>Class : <b>
+					</td>
+					<TD CLASS="MTTD1" WIDTH="81%" colspan="2">
+						SE E&TC SEM 2
+					</td>
+				</tr>
+				<tr>
+					<TD class=MTTD1 vAlign=top align=left width="20%" colspan="2">
+						<b>Section : <b>
+					</td>
+					<TD CLASS="MTTD1" WIDTH="81%" colspan="2">
+						VII
+					</td>
+				</tr>
+				<tr>
+					<TD class=MTTD1 vAlign=top align=left width="20%" colspan="2">
+						<b>SubjectName : <b>
+					</td>
+
+					<TD CLASS="MTTD1" WIDTH="81%" colspan="2">
+						CONTROL SYSTEMS
+					</td>
+				</tr>
+				<tr>
+					<TD class=MTTD1 vAlign=top align=left width="20%" colspan="2">
+						<b>Date<b>
+					</td>
+
+					<TD CLASS="MTTD1" WIDTH="81%" colspan="2">
+						02-04-2021
+					</td>
+				</tr>
+			</table>
+			<table class="maintable" align="center" style="width:800px">
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<b>StudentName</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<b>RollNo</b>
+					</td>
+
+
+					
+					<td class=MTTD2 vAlign=top align=right width="" align="right">
+						<b>Lect No2
+						</b>&nbsp;
+						
+						<INPUT TYPE="checkbox" NAME="2selectAll"
+							value="2selectAll"
+							onclick="javascript:checkAll('2selectAll','2MarkAttendanceCHK');">
+						<b></b>
+					</td>
+					
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName0"
+							value="KUMAR  ANKIT">
+						<b>KUMAR  ANKIT
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo0"
+							value="22301">
+						<b>22301
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103671"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName1"
+							value="BHADANGE RAMESH NIKITA">
+						<b>BHADANGE RAMESH NIKITA
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo1"
+							value="22302">
+						<b>22302
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103650"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName2"
+							value="BHUTADA MURLIDHAR RAGHAV">
+						<b>BHUTADA MURLIDHAR RAGHAV
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo2"
+							value="22303">
+						<b>22303
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103702"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName3"
+							value="CHAUDHARI RAJENDRA YOGIRAJ">
+						<b>CHAUDHARI RAJENDRA YOGIRAJ
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo3"
+							value="22304">
+						<b>22304
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103589"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName4"
+							value="DAMOSHAN DHANANJAY RUTURAJ">
+						<b>DAMOSHAN DHANANJAY RUTURAJ
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo4"
+							value="22305">
+						<b>22305
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103781"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName5"
+							value="GADE RAJENDRA VISHAL">
+						<b>GADE RAJENDRA VISHAL
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo5"
+							value="22306">
+						<b>22306
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103545"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName6"
+							value="GUJARATHI NAVINCHANDRA MIHIR">
+						<b>GUJARATHI NAVINCHANDRA MIHIR
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo6"
+							value="22307">
+						<b>22307
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103759"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName7"
+							value="INAMDAR YOGESH EESHA">
+						<b>INAMDAR YOGESH EESHA
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo7"
+							value="22308">
+						<b>22308
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103569"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName8"
+							value="JADHAV KHANDU AAKASH">
+						<b>JADHAV KHANDU AAKASH
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo8"
+							value="22309">
+						<b>22309
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103538"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName9"
+							value="JADHAV PREMNATH SWAPNIL">
+						<b>JADHAV PREMNATH SWAPNIL
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo9"
+							value="22310">
+						<b>22310
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103507"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName10"
+							value="JAJU SANJAY ATHARVA">
+						<b>JAJU SANJAY ATHARVA
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo10"
+							value="22311">
+						<b>22311
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103730"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName11"
+							value="KAGWADE MAHADEVRAO ABHAY">
+						<b>KAGWADE MAHADEVRAO ABHAY
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo11"
+							value="22312">
+						<b>22312
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103803"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName12"
+							value="KALASKAR SACHIN VARADA">
+						<b>KALASKAR SACHIN VARADA
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo12"
+							value="22313">
+						<b>22313
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103778"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName13"
+							value="KANDALKAR SHARADRAO AMIT">
+						<b>KANDALKAR SHARADRAO AMIT
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo13"
+							value="22314">
+						<b>22314
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103659"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName14"
+							value="KARANDIKAR NIRBHAY MALHAAR">
+						<b>KARANDIKAR NIRBHAY MALHAAR
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo14"
+							value="22315">
+						<b>22315
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103554"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName15"
+							value="KAWATE DNYANDEV SAYALI">
+						<b>KAWATE DNYANDEV SAYALI
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo15"
+							value="22316">
+						<b>22316
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103526"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName16"
+							value="KHAZI  ASHWAQ">
+						<b>KHAZI  ASHWAQ
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo16"
+							value="22317">
+						<b>22317
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103633"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName17"
+							value="KHOND GANESH HARSHAL">
+						<b>KHOND GANESH HARSHAL
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo17"
+							value="22318">
+						<b>22318
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103542"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName18"
+							value="KULKARNI ULHAS SWANAND">
+						<b>KULKARNI ULHAS SWANAND
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo18"
+							value="22319">
+						<b>22319
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103636"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName19"
+							value="MADNE PANDHARINATH SHUBHAM">
+						<b>MADNE PANDHARINATH SHUBHAM
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo19"
+							value="22320">
+						<b>22320
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103631"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName20"
+							value="MANDLIK BALAJI ABHISHEK">
+						<b>MANDLIK BALAJI ABHISHEK
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo20"
+							value="22321">
+						<b>22321
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103606"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName21"
+							value="MATEKAR UNMESH GARGI">
+						<b>MATEKAR UNMESH GARGI
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo21"
+							value="22322">
+						<b>22322
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103755"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName22"
+							value="MIRJI RAJEEV ANAGH">
+						<b>MIRJI RAJEEV ANAGH
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo22"
+							value="22323">
+						<b>22323
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103555"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName23"
+							value="MUNDRA RAJESH SANSKAR">
+						<b>MUNDRA RAJESH SANSKAR
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo23"
+							value="22324">
+						<b>22324
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103653"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName24"
+							value="RATHI SHANKAR NAYAN">
+						<b>RATHI SHANKAR NAYAN
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo24"
+							value="22325">
+						<b>22325
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103798"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName25"
+							value="PAITHANKAR DATTATRAY DARSHAN">
+						<b>PAITHANKAR DATTATRAY DARSHAN
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo25"
+							value="22326">
+						<b>22326
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103715"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName26"
+							value="PATHAN AYUBKHAN SOFIYAN">
+						<b>PATHAN AYUBKHAN SOFIYAN
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo26"
+							value="22327">
+						<b>22327
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103605"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName27"
+							value="PATIL ANIL AVANTIKA">
+						<b>PATIL ANIL AVANTIKA
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo27"
+							value="22328">
+						<b>22328
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103533"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName28"
+							value="PATIL RAMDAS RAJVARDHAN">
+						<b>PATIL RAMDAS RAJVARDHAN
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo28"
+							value="22329">
+						<b>22329
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103623"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName29"
+							value="POL RAJENDRA PRATHAMESH">
+						<b>POL RAJENDRA PRATHAMESH
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo29"
+							value="22331">
+						<b>22331
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103657"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName30"
+							value="PURANDARE NITIN PARTHA">
+						<b>PURANDARE NITIN PARTHA
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo30"
+							value="22332">
+						<b>22332
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103711"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName31"
+							value="REMANE MAHENDRA MANDAR">
+						<b>REMANE MAHENDRA MANDAR
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo31"
+							value="22333">
+						<b>22333
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103679"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName32"
+							value="S RATHISH KUMAR">
+						<b>S RATHISH KUMAR
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo32"
+							value="22334">
+						<b>22334
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103626"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName33"
+							value="KHASBAGE YOGESHWAR SANSKRUTI">
+						<b>KHASBAGE YOGESHWAR SANSKRUTI
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo33"
+							value="22335">
+						<b>22335
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103658"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName34"
+							value="SAWARGAONKAR SHESHRAO SHAUNAK">
+						<b>SAWARGAONKAR SHESHRAO SHAUNAK
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo34"
+							value="22336">
+						<b>22336
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103519"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName35"
+							value="SHELKE RAVINDRA BANSI">
+						<b>SHELKE RAVINDRA BANSI
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo35"
+							value="22337">
+						<b>22337
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103681"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName36"
+							value="SINGH  SHIKHAR">
+						<b>SINGH  SHIKHAR
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo36"
+							value="22338">
+						<b>22338
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103691"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName37"
+							value="SHIRBHATE GAJANAN VAIDILYA">
+						<b>SHIRBHATE GAJANAN VAIDILYA
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo37"
+							value="22339">
+						<b>22339
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103583"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName38"
+							value="GATTHAWAR DEELIP SHRINIVAS">
+						<b>GATTHAWAR DEELIP SHRINIVAS
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo38"
+							value="22340">
+						<b>22340
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103719"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName39"
+							value="SOHANI AJAY TIRTHESH">
+						<b>SOHANI AJAY TIRTHESH
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo39"
+							value="22341">
+						<b>22341
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103617"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName40"
+							value="SONAWANE YOGESH AVANTIKA">
+						<b>SONAWANE YOGESH AVANTIKA
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo40"
+							value="22342">
+						<b>22342
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103594"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName41"
+							value="SURYAWANSHI GANESH AANAND">
+						<b>SURYAWANSHI GANESH AANAND
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo41"
+							value="22343">
+						<b>22343
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103789"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName42"
+							value="TAK SUHAS SHUBHAM">
+						<b>TAK SUHAS SHUBHAM
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo42"
+							value="22344">
+						<b>22344
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103561"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName43"
+							value="MANE SANJAY KUMAR TANVI">
+						<b>MANE SANJAY KUMAR TANVI
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo43"
+							value="22345">
+						<b>22345
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103771"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName44"
+							value="SHANKAR SAMEER TULSANI">
+						<b>SHANKAR SAMEER TULSANI
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo44"
+							value="22346">
+						<b>22346
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103552"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName45"
+							value="VAZARKAR SUNIL SARVESH">
+						<b>VAZARKAR SUNIL SARVESH
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo45"
+							value="22347">
+						<b>22347
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103642"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName46"
+							value="WAGH DATTATRAYA ANISHA">
+						<b>WAGH DATTATRAYA ANISHA
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo46"
+							value="22348">
+						<b>22348
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103522"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName47"
+							value="WANI CHANDRAKANT GAURI">
+						<b>WANI CHANDRAKANT GAURI
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo47"
+							value="22349">
+						<b>22349
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103770"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName48"
+							value="ZADE PRASHANT VAIDEHI">
+						<b>ZADE PRASHANT VAIDEHI
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo48"
+							value="22350">
+						<b>22350
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103580"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName49"
+							value="PATEL JIGNESH ZEEL">
+						<b>PATEL JIGNESH ZEEL
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo49"
+							value="22351">
+						<b>22351
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103539"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName50"
+							value="CHAUDHARI ANUPAM YASH">
+						<b>CHAUDHARI ANUPAM YASH
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo50"
+							value="22352">
+						<b>22352
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103585"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName51"
+							value="SHELAR UTTAM YASHODEEP">
+						<b>SHELAR UTTAM YASHODEEP
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo51"
+							value="22353">
+						<b>22353
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103587"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName52"
+							value="JANGID SHYAMSUNDAR SANDEEP">
+						<b>JANGID SHYAMSUNDAR SANDEEP
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo52"
+							value="22354">
+						<b>22354
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103705"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName53"
+							value="BORATE SANJAY SOURAV">
+						<b>BORATE SANJAY SOURAV
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo53"
+							value="22355">
+						<b>22355
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103563"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName54"
+							value="DESAI DEVENDRA PRANJALI">
+						<b>DESAI DEVENDRA PRANJALI
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo54"
+							value="22356">
+						<b>22356
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103712"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName55"
+							value="SHAH MAYUR AARYAN">
+						<b>SHAH MAYUR AARYAN
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo55"
+							value="22357">
+						<b>22357
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K19103735"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName56"
+							value="KALE VISHWAMBHAR AMULYA">
+						<b>KALE VISHWAMBHAR AMULYA
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo56"
+							value="22358">
+						<b>22358
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206508"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName57"
+							value="FOLE ASHWIN VANMALA">
+						<b>FOLE ASHWIN VANMALA
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo57"
+							value="22359">
+						<b>22359
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206494"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName58"
+							value="SONAWANE DATTU MEGHANA">
+						<b>SONAWANE DATTU MEGHANA
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo58"
+							value="22361">
+						<b>22361
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206497"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName59"
+							value="PATIL DEEPAK SAKSHI">
+						<b>PATIL DEEPAK SAKSHI
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo59"
+							value="22362">
+						<b>22362
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206498"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName60"
+							value="GAUD PRAMOD SHRUTI">
+						<b>GAUD PRAMOD SHRUTI
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo60"
+							value="22363">
+						<b>22363
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206495"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName61"
+							value="RAUT BALASAHEB MONIKA">
+						<b>RAUT BALASAHEB MONIKA
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo61"
+							value="22364">
+						<b>22364
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206502"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName62"
+							value="SABALE VILAS PRATIK">
+						<b>SABALE VILAS PRATIK
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo62"
+							value="22365">
+						<b>22365
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206504"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName63"
+							value="VARMA SANJAYSINGH OM">
+						<b>VARMA SANJAYSINGH OM
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo63"
+							value="22366">
+						<b>22366
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206505"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName64"
+							value="PATIL DHANANJAY MADHURI">
+						<b>PATIL DHANANJAY MADHURI
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo64"
+							value="22367">
+						<b>22367
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206509"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName65"
+							value="CHOUGULE VIDYASAGAR PALLAVI">
+						<b>CHOUGULE VIDYASAGAR PALLAVI
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo65"
+							value="22368">
+						<b>22368
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206511"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName66"
+							value="NALAPURE SHRIRAM SAKSHI">
+						<b>NALAPURE SHRIRAM SAKSHI
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo66"
+							value="22369">
+						<b>22369
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206512"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName67"
+							value="EDAKE PARASHARAM PRATIK">
+						<b>EDAKE PARASHARAM PRATIK
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo67"
+							value="22370">
+						<b>22370
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206515"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName68"
+							value="WALUNJ SAKHAHARI KANCHAN">
+						<b>WALUNJ SAKHAHARI KANCHAN
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo68"
+							value="22371">
+						<b>22371
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206516"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName69"
+							value="DHADAKE GUNDERAO RAJESH">
+						<b>DHADAKE GUNDERAO RAJESH
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo69"
+							value="22372">
+						<b>22372
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206517"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName70"
+							value="JADHAV RAJENDRA HARSHAL">
+						<b>JADHAV RAJENDRA HARSHAL
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo70"
+							value="22373">
+						<b>22373
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206519"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName71"
+							value="RAJGURU NAGANATH SACHIN">
+						<b>RAJGURU NAGANATH SACHIN
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo71"
+							value="22374">
+						<b>22374
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206518"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName72"
+							value="KAMBLE SHIVANAND PRAJAKTA">
+						<b>KAMBLE SHIVANAND PRAJAKTA
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo72"
+							value="22375">
+						<b>22375
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206520"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName73"
+							value="MANE SATISH ANIKET">
+						<b>MANE SATISH ANIKET
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo73"
+							value="22376">
+						<b>22376
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206521"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName74"
+							value="THAKUR VINOD AMOGH">
+						<b>THAKUR VINOD AMOGH
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo74"
+							value="22377">
+						<b>22377
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206525"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName75"
+							value="PATIL RAJENDRA SAYALI">
+						<b>PATIL RAJENDRA SAYALI
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo75"
+							value="22378">
+						<b>22378
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206526"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName76"
+							value="PATIL ASHOK APEKSHA">
+						<b>PATIL ASHOK APEKSHA
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo76"
+							value="22379">
+						<b>22379
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206527"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName77"
+							value="KHATRI PRAKASH HARSH">
+						<b>KHATRI PRAKASH HARSH
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo77"
+							value="22380">
+						<b>22380
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206528"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName78"
+							value="MANDLIK ARVIND BHAKTI">
+						<b>MANDLIK ARVIND BHAKTI
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo78"
+							value="22381">
+						<b>22381
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206529"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName79"
+							value="BAN SUKHDEV RAHUL">
+						<b>BAN SUKHDEV RAHUL
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo79"
+							value="22382">
+						<b>22382
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206530"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName80"
+							value="BOCHARE AJINATH RUSHIKESH">
+						<b>BOCHARE AJINATH RUSHIKESH
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo80"
+							value="22383">
+						<b>22383
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206533"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				</tr>
+				<tr>
+
+					<td class=MTTD2 vAlign=top align=right width="30%" align="right">
+						<input type="hidden" name="studName81"
+							value="SHINDE DILIP ROHIT">
+						<b>SHINDE DILIP ROHIT
+						</b>
+					</td>
+					<td class=MTTD2 vAlign=top align=left width="5%" align="left">
+						<input type="hidden" name="rollNo81"
+							value="22384">
+						<b>22384
+						</b>
+					</td>
+
+					
+					<td class="MTTD8" width="10%" align="center">
+						<input type="checkbox" name="2MarkAttendanceCHK"
+							id="2MarkAttendanceCHK" value="2~E2K20206534"
+							onclick="uncheckSelectAll('2MarkAttendanceCHK','2selectAll')">
+					</td>
+					
+				</tr>
+				
+				<tr>
+					<td class="MTTD8" valign="top" align="center" colspan="3">
+						<input type="button" name="btn" value="MarkPresent" class="btn"
+							onclick="if (confirm('Are you sure you want to Mark as Present?')) submitPage2('2@'); else { return false; }">
+						&nbsp;
+						<input type="button" name="btn" value="MarkAbsent" class="btn"
+							onclick="if (confirm('Are you sure you want to Mark as Absent?')) submitPage1('2@'); else { return false; }">
+						&nbsp;
+						<input type="reset" name="reset" value="Reset" class="btn"
+							onclick="resetthis();">
+					</td>
+				</tr>
+				<input type="hidden" name="studCount" value="82">
+				<input type="hidden" name="attendance_date" value="02-04-2021">
+				<input type="hidden" name="attendance_by" value="EMP680">
+				<input type="hidden" name="late_flag" value="N">
+				<input type="hidden" name="late_reason" value="AA">
+				<input type="hidden" name="class_structure_id" value="109">
+				<input type="hidden" name="subject_id" value="319">
+				<input type="hidden" name="batch_id" value="0">
+
+
+			</table>
+		</form>
+		
+		 
+
+<!-- Footer Starts -->
+
+ 
+				<br>
+					<table width="100%"   cellpadding="0" cellspacing="0" >
+						
+						<tr>
+							<td  colspan="2" align="right">
+					
+							<font face="Verdana" size="1" color="#666666">
+							
+							
+							<a style="text-decoration:none" href = "/DCWeb/form/jsp_common/ContactUs.jsp"> <font  color="#666666"> Contact Us </font> </a>
+							
+							| 
+							
+														
+								<a style="text-decoration:none" href = "/DCWeb/form/jsp_common/AboutDS.jsp"> <font  color="#666666"> About Digital Campus </font> </a>
+							
+							</font>
+							<hr size=1 width="100%">
+							</td>
+							</tr>
+
+							<tr>
+							<td colspan="2" align="right" style="background-color: #EEEEEE;">
+
+							<font face="Verdana" size="1" color="#666666">Best Viewed in 1024 * 768 pixels <br> © ETH Ltd. 
+							</font></td>
+							</tr>
+							</table>
+
+							</td>
+						</tr>
+					</table>
+			</td>
+		</tr>
+	</table>
+ 	
+
+<!-- footer ends -->
+
+ 
+
+
+
+
+	</body>
+</html>

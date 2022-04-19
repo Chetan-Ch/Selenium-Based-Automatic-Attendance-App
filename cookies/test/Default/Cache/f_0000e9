@@ -1,0 +1,531 @@
+
+
+
+
+
+
+	       
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">     
+<html>
+<head>
+<link rel= "stylesheet" type= "text/css" href="/container/resources/stylesheet/s_ecube.css"> 
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <title>Confirm Mark Attendence</title>
+  <script>	
+			function Submit()
+       		{ 
+				//alert("Submit");
+				document.MarkAttendence_frm.action="/DCWeb/form/jsp_StudentAttendance_PICT/InsertStudentAttendance_PICT.jsp?flag=1";
+	            document.MarkAttendence_frm.submit();
+       		}
+			function Cancel()
+       		{ 
+			//alert("cancel");
+			window.history.back();
+    		}
+		</script>
+</head>
+
+<body onload="setFocusOnLoad();" background="/container/resources/gif/backgrund-page.gif" leftmargin="0" rightmargin="0" topmargin="0">
+<form name=MarkAttendence_frm  method="post" action="">
+
+
+
+		<link rel= "stylesheet" type= "text/css" href="/container/resources/stylesheet/s_ecube.css">
+		
+
+
+
+<!-- Header  -->
+  <!-- Apply Language Starts -->
+   
+
+
+	
+<style> TD { font-family: Verdana; font-size: 10 } FORM { font-family: Verdana; font-size: 10 } INPUT { font-family: Verdana; font-size: 10 } BODY { font-family: Verdana; font-size: 10 } TABLE { font-family: Verdana; font-size: 10 } TEXTAREA { font-family: Verdana; font-size: 10 } MARQUEE { font-family: Verdana; font-size: 10 } SELECT { font-family: Verdana; font-size: 10 } </style>
+
+	<script language="JavaScript"  src="/container/resources/validation/Parser.js"></script>
+	<script language="JavaScript" >
+		isEng = true;
+	</script>
+
+
+<style>
+td.MTTD2
+      { 	
+	background-color: #FFFFFF;
+	border: 1 solid #EEEEEE;
+	border-collapse: collapse;
+	cellspacing		:0;
+	cellpadding		:0;
+	font-family: Verdana;
+	font-size: 10;
+	color: #333333;
+	text-align:left;
+	}
+</style>
+
+
+
+
+  <!-- Apply Language Ends -->
+  <script>
+	function callTogglelocalLang(locallang){
+  	    var frmlocation='';
+  	    if(frmlocation=='')
+  	    {
+	  	    document.headerForm.localLang.value=locallang;
+	    	document.headerForm.submit();
+  	    }
+  	    else{
+	  	    if(frmlocation.indexOf('?')==-1)
+	  	    {
+		  	    frmlocation=frmlocation+"?localLang="+locallang;
+	  	    }
+	  	    else
+	  	    {
+		  	    frmlocation=frmlocation+"&localLang="+locallang;
+	  	    }
+  	        document.location=frmlocation;
+  	    }
+    }
+   
+    </script>
+<br>
+	
+<input type="hidden" name="localLang" value="en">
+<table border="1" width="95%" cellpadding="0" align=center cellspacing="0" style="border: 10 solid #DFDCCE; border-collapse: collapse" bgcolor="#FFFFFF">
+		<tr>
+			<td  valign="top" align="left">
+				<table width="100%" border="0" cellpadding="0" cellspacing="0"  style="border-collapse: collapse" background="/container/resources/gif/new/topbandbg.gif" bgcolor="#EFEFDE">
+					<tr>
+						<td valign="top" align="left" background="/container/resources/gif/new/topbandbg.gif" bgcolor="#EFEFDE">
+						</td>
+						<td bgcolor="#EFEFDE" background="/container/resources/gif/new/topbandbg.gif"  align="left">
+							 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/container/resources/gif/logos/PICT/pict_logo.png"  width="98" height="100" >
+							</td>
+
+						<td>
+							<img src="/container/resources/gif/new/topbandbg.gif" width="75" height="63">
+						</td>
+
+						<td   valign="top" align="right" background="/container/resources/gif/new/topbandbg.gif" bgcolor="#EFEFDE">
+						</td>
+						
+						<td align="right" valign="center">
+						   <img src="/container/resources/gif/logos/logo.gif" width="228" height="67" >
+							<!--<img src="/container/resources/gif/innertopband.gif" width="520" height="67">-->
+						</td>
+					</tr>
+				</table>
+	    		
+				<table width="100%"  border="1" cellpadding="0" cellspacing="0" style="border: 6 solid #EFEFDE; border-collapse: collapse" bgcolor="#EFEFDE">
+					<tr>
+						<td   align="left">&nbsp;
+						
+					 	&nbsp;&nbsp; <b></b>
+				  
+						</td>
+						<td align="right">
+						<align="left" style="margin-right: 10"><font size="1.4" face="Verdana" color="#524D36" style = rig>
+						
+						
+						<a style="text-decoration:none" href="https://pict.ethdigitalcampus.com:443/DCWeb/form/jsp_aaa/Authenticate.jsp" ><b><font  color="#524D36" >Activities</font></b></a> | 
+						
+						
+						<a style="text-decoration:none" href="https://pict.ethdigitalcampus.com:443/DCWeb/form/jsp_common/dashBoardDetails.jsp" ><b><font  color="#524D36" >Dashboard</font> </b></a> | 
+						
+						<a style="text-decoration:none" href="https://pict.ethdigitalcampus.com:443/DCWeb/servlet/LogOut" ><b><font  color="#524D36" >Log Out</font> </b></a> 
+						
+						</font>
+						</td>
+
+						
+					</tr>
+					
+					<tr>
+				    <td  colspan="2">
+						<MARQUEE SCROLLDELAY=1000>
+						
+						<align="right" style="margin-right: 10"><font size="1.4" face="Verdana" color="#524D36" style = rig>
+						<b>
+						
+							 Hi ! CHETAN CHANDRAKANT PAWAR 
+
+						
+						</b>						
+						</MARQUEE>
+						
+						</td>
+					</tr>
+	 		
+				</table>
+				
+
+ 
+ 
+ 
+   				<tr>
+					<td align="center">
+						<br>
+
+		
+		
+ 		
+    
+			
+
+				<table class="maintable" align="center" style="width:700px">
+				<tr>
+				<td class=MTTD1 vAlign=top align=center ><b>Confirmation Screen</b></td>
+				</tr>
+				</table>
+				<table class="maintable" align="center" style="width:700px">
+				
+				<tr>
+				<td class=MTTD1 vAlign=top align=center width="30%" colspan="1"><b>Student Name</b></td>
+				<td class=MTTD1 vAlign=top align=center width="10%" colspan="1"><b>Roll No</b></td>
+				
+						   
+						   <td class=MTTD1 vAlign=top align=center width="7%" colspan="1"><b>Lect No2</b></td>
+						 
+						   </tr>
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>KUMAR  ANKIT</b></td><td class="MTTD8" width="10%" align="center" ><b>22301</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>BHADANGE RAMESH NIKITA</b></td><td class="MTTD8" width="10%" align="center" ><b>22302</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>BHUTADA MURLIDHAR RAGHAV</b></td><td class="MTTD8" width="10%" align="center" ><b>22303</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>CHAUDHARI RAJENDRA YOGIRAJ</b></td><td class="MTTD8" width="10%" align="center" ><b>22304</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>DAMOSHAN DHANANJAY RUTURAJ</b></td><td class="MTTD8" width="10%" align="center" ><b>22305</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>GADE RAJENDRA VISHAL</b></td><td class="MTTD8" width="10%" align="center" ><b>22306</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>GUJARATHI NAVINCHANDRA MIHIR</b></td><td class="MTTD8" width="10%" align="center" ><b>22307</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>INAMDAR YOGESH EESHA</b></td><td class="MTTD8" width="10%" align="center" ><b>22308</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>JADHAV KHANDU AAKASH</b></td><td class="MTTD8" width="10%" align="center" ><b>22309</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>JADHAV PREMNATH SWAPNIL</b></td><td class="MTTD8" width="10%" align="center" ><b>22310</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>JAJU SANJAY ATHARVA</b></td><td class="MTTD8" width="10%" align="center" ><b>22311</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>KAGWADE MAHADEVRAO ABHAY</b></td><td class="MTTD8" width="10%" align="center" ><b>22312</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>KALASKAR SACHIN VARADA</b></td><td class="MTTD8" width="10%" align="center" ><b>22313</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>KANDALKAR SHARADRAO AMIT</b></td><td class="MTTD8" width="10%" align="center" ><b>22314</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>KARANDIKAR NIRBHAY MALHAAR</b></td><td class="MTTD8" width="10%" align="center" ><b>22315</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>KAWATE DNYANDEV SAYALI</b></td><td class="MTTD8" width="10%" align="center" ><b>22316</b></td><td class="MTTD8" width="10%" align="center" ><b><font color="red">A</font></b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>KHAZI  ASHWAQ</b></td><td class="MTTD8" width="10%" align="center" ><b>22317</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>KHOND GANESH HARSHAL</b></td><td class="MTTD8" width="10%" align="center" ><b>22318</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>KULKARNI ULHAS SWANAND</b></td><td class="MTTD8" width="10%" align="center" ><b>22319</b></td><td class="MTTD8" width="10%" align="center" ><b><font color="red">A</font></b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>MADNE PANDHARINATH SHUBHAM</b></td><td class="MTTD8" width="10%" align="center" ><b>22320</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>MANDLIK BALAJI ABHISHEK</b></td><td class="MTTD8" width="10%" align="center" ><b>22321</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>MATEKAR UNMESH GARGI</b></td><td class="MTTD8" width="10%" align="center" ><b>22322</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>MIRJI RAJEEV ANAGH</b></td><td class="MTTD8" width="10%" align="center" ><b>22323</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>MUNDRA RAJESH SANSKAR</b></td><td class="MTTD8" width="10%" align="center" ><b>22324</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>RATHI SHANKAR NAYAN</b></td><td class="MTTD8" width="10%" align="center" ><b>22325</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>PAITHANKAR DATTATRAY DARSHAN</b></td><td class="MTTD8" width="10%" align="center" ><b>22326</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>PATHAN AYUBKHAN SOFIYAN</b></td><td class="MTTD8" width="10%" align="center" ><b>22327</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>PATIL ANIL AVANTIKA</b></td><td class="MTTD8" width="10%" align="center" ><b>22328</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>PATIL RAMDAS RAJVARDHAN</b></td><td class="MTTD8" width="10%" align="center" ><b>22329</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>POL RAJENDRA PRATHAMESH</b></td><td class="MTTD8" width="10%" align="center" ><b>22331</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>PURANDARE NITIN PARTHA</b></td><td class="MTTD8" width="10%" align="center" ><b>22332</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>REMANE MAHENDRA MANDAR</b></td><td class="MTTD8" width="10%" align="center" ><b>22333</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>S RATHISH KUMAR</b></td><td class="MTTD8" width="10%" align="center" ><b>22334</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>KHASBAGE YOGESHWAR SANSKRUTI</b></td><td class="MTTD8" width="10%" align="center" ><b>22335</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>SAWARGAONKAR SHESHRAO SHAUNAK</b></td><td class="MTTD8" width="10%" align="center" ><b>22336</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>SHELKE RAVINDRA BANSI</b></td><td class="MTTD8" width="10%" align="center" ><b>22337</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>SINGH  SHIKHAR</b></td><td class="MTTD8" width="10%" align="center" ><b>22338</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>SHIRBHATE GAJANAN VAIDILYA</b></td><td class="MTTD8" width="10%" align="center" ><b>22339</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>GATTHAWAR DEELIP SHRINIVAS</b></td><td class="MTTD8" width="10%" align="center" ><b>22340</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>SOHANI AJAY TIRTHESH</b></td><td class="MTTD8" width="10%" align="center" ><b>22341</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>SONAWANE YOGESH AVANTIKA</b></td><td class="MTTD8" width="10%" align="center" ><b>22342</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>SURYAWANSHI GANESH AANAND</b></td><td class="MTTD8" width="10%" align="center" ><b>22343</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>TAK SUHAS SHUBHAM</b></td><td class="MTTD8" width="10%" align="center" ><b>22344</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>MANE SANJAY KUMAR TANVI</b></td><td class="MTTD8" width="10%" align="center" ><b>22345</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>SHANKAR SAMEER TULSANI</b></td><td class="MTTD8" width="10%" align="center" ><b>22346</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>VAZARKAR SUNIL SARVESH</b></td><td class="MTTD8" width="10%" align="center" ><b>22347</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>WAGH DATTATRAYA ANISHA</b></td><td class="MTTD8" width="10%" align="center" ><b>22348</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>WANI CHANDRAKANT GAURI</b></td><td class="MTTD8" width="10%" align="center" ><b>22349</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>ZADE PRASHANT VAIDEHI</b></td><td class="MTTD8" width="10%" align="center" ><b>22350</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>PATEL JIGNESH ZEEL</b></td><td class="MTTD8" width="10%" align="center" ><b>22351</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>CHAUDHARI ANUPAM YASH</b></td><td class="MTTD8" width="10%" align="center" ><b>22352</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>SHELAR UTTAM YASHODEEP</b></td><td class="MTTD8" width="10%" align="center" ><b>22353</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>JANGID SHYAMSUNDAR SANDEEP</b></td><td class="MTTD8" width="10%" align="center" ><b>22354</b></td><td class="MTTD8" width="10%" align="center" ><b><font color="red">A</font></b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>BORATE SANJAY SOURAV</b></td><td class="MTTD8" width="10%" align="center" ><b>22355</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>DESAI DEVENDRA PRANJALI</b></td><td class="MTTD8" width="10%" align="center" ><b>22356</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>SHAH MAYUR AARYAN</b></td><td class="MTTD8" width="10%" align="center" ><b>22357</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>KALE VISHWAMBHAR AMULYA</b></td><td class="MTTD8" width="10%" align="center" ><b>22358</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>FOLE ASHWIN VANMALA</b></td><td class="MTTD8" width="10%" align="center" ><b>22359</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>SONAWANE DATTU MEGHANA</b></td><td class="MTTD8" width="10%" align="center" ><b>22361</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>PATIL DEEPAK SAKSHI</b></td><td class="MTTD8" width="10%" align="center" ><b>22362</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>GAUD PRAMOD SHRUTI</b></td><td class="MTTD8" width="10%" align="center" ><b>22363</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>RAUT BALASAHEB MONIKA</b></td><td class="MTTD8" width="10%" align="center" ><b>22364</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>SABALE VILAS PRATIK</b></td><td class="MTTD8" width="10%" align="center" ><b>22365</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>VARMA SANJAYSINGH OM</b></td><td class="MTTD8" width="10%" align="center" ><b>22366</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>PATIL DHANANJAY MADHURI</b></td><td class="MTTD8" width="10%" align="center" ><b>22367</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>CHOUGULE VIDYASAGAR PALLAVI</b></td><td class="MTTD8" width="10%" align="center" ><b>22368</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>NALAPURE SHRIRAM SAKSHI</b></td><td class="MTTD8" width="10%" align="center" ><b>22369</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>EDAKE PARASHARAM PRATIK</b></td><td class="MTTD8" width="10%" align="center" ><b>22370</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>WALUNJ SAKHAHARI KANCHAN</b></td><td class="MTTD8" width="10%" align="center" ><b>22371</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>DHADAKE GUNDERAO RAJESH</b></td><td class="MTTD8" width="10%" align="center" ><b>22372</b></td><td class="MTTD8" width="10%" align="center" ><b><font color="red">A</font></b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>JADHAV RAJENDRA HARSHAL</b></td><td class="MTTD8" width="10%" align="center" ><b>22373</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>RAJGURU NAGANATH SACHIN</b></td><td class="MTTD8" width="10%" align="center" ><b>22374</b></td><td class="MTTD8" width="10%" align="center" ><b><font color="red">A</font></b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>KAMBLE SHIVANAND PRAJAKTA</b></td><td class="MTTD8" width="10%" align="center" ><b>22375</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>MANE SATISH ANIKET</b></td><td class="MTTD8" width="10%" align="center" ><b>22376</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>THAKUR VINOD AMOGH</b></td><td class="MTTD8" width="10%" align="center" ><b>22377</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>PATIL RAJENDRA SAYALI</b></td><td class="MTTD8" width="10%" align="center" ><b>22378</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>PATIL ASHOK APEKSHA</b></td><td class="MTTD8" width="10%" align="center" ><b>22379</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>KHATRI PRAKASH HARSH</b></td><td class="MTTD8" width="10%" align="center" ><b>22380</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>MANDLIK ARVIND BHAKTI</b></td><td class="MTTD8" width="10%" align="center" ><b>22381</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>BAN SUKHDEV RAHUL</b></td><td class="MTTD8" width="10%" align="center" ><b>22382</b></td><td class="MTTD8" width="10%" align="center" ><b><font color="red">A</font></b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>BOCHARE AJINATH RUSHIKESH</b></td><td class="MTTD8" width="10%" align="center" ><b>22383</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				   <tr>
+				   <td class="MTTD8" width="10%" align="left" ><b>SHINDE DILIP ROHIT</b></td><td class="MTTD8" width="10%" align="center" ><b>22384</b></td><td class="MTTD8" width="10%" align="center"><b>P</b></td>
+				   </tr>
+				   
+				</table>
+				<table class="maintable" align="center" style="width:700px">
+				<tr>
+			<td class="MTTD8" valign="top" align="center">
+			<input type="button" name="btn"   value="Submit" class="btn"  onclick="Submit();" >&nbsp;
+			<input type="button" name="btn"   value="Cancel"  class="btn"  onclick="Cancel(); ">&nbsp;
+			</td>
+					</tr>
+				</table>
+				

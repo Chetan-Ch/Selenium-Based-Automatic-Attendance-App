@@ -1,0 +1,411 @@
+Object Oriented Programming LAB E8
+
+Object Oriented Programming LAB H8
+
+Object Oriented Programming LAB F8
+
+Object Oriented Programming LAB G8
+
+Object Oriented Programming LAB E7
+
+Object Oriented Programming LAB H7
+
+Object Oriented Programming LAB F7
+
+Object Oriented Programming LAB G7
+
+Object Oriented Programming LAB E6
+
+Object Oriented Programming LAB H6
+
+Object Oriented Programming LAB F6
+
+Object Oriented Programming LAB G6
+
+Object Oriented Programming LAB E5
+
+Object Oriented Programming LAB H5
+
+Object Oriented Programming LAB F5
+
+Object Oriented Programming LAB G5
+
+PROJECT BASED LEARNING LAB G8
+
+PROJECT BASED LEARNING LAB F8 
+
+PROJECT BASED LEARNING LAB H8
+
+PROJECT BASED LEARNING LAB E8 
+
+PROJECT BASED LEARNING LAB G7
+
+PROJECT BASED LEARNING LAB F7
+
+PROJECT BASED LEARNING LAB H7
+
+PROJECT BASED LEARNING LAB E7
+
+PROJECT BASED LEARNING LAB G6
+
+PROJECT BASED LEARNING LAB F6
+
+PROJECT BASED LEARNING LAB H6
+
+PROJECT BASED LEARNING LAB E6
+
+PROJECT BASED LEARNING LAB G5
+
+PROJECT BASED LEARNING LAB F5
+
+PROJECT BASED LEARNING LAB H5
+
+PROJECT BASED LEARNING LAB E5
+
+Employability Skill Development LAB E8
+
+Employability Skill Development LAB F8
+
+Employability Skill Development LAB G8
+
+Employability Skill Development LAB H8
+
+Employability Skill Development LAB E7
+
+Employability Skill Development LAB F7
+
+Employability Skill Development LAB G7
+
+Employability Skill Development LAB H7
+
+Employability Skill Development LAB E6
+
+Employability Skill Development LAB F6
+
+Employability Skill Development LAB G6
+
+Employability Skill Development LAB H6
+
+Employability Skill Development LAB E5
+
+Employability Skill Development LAB F5
+
+Employability Skill Development LAB G5
+
+Employability Skill Development LAB H5
+
+Power Electronics LAB K5
+
+Power Electronics LAB L5
+
+Power Electronics LAB M5
+
+Power Electronics LAB N5
+
+Power Electronics LAB K6
+
+Power Electronics LAB L6
+
+Power Electronics LAB M6
+
+Power Electronics LAB N6
+
+Power Electronics LAB K7
+
+Power Electronics LAB L7
+
+Power Electronics LAB M7
+
+Power Electronics LAB N7
+
+Power Electronics LAB K8
+
+Power Electronics LAB L8
+
+Power Electronics LAB M8
+
+Power Electronics LAB N8
+
+Information Theory, Coding and Communication Networks LAB K5
+
+Information Theory, Coding and Communication Networks LAB L5
+
+Information Theory, Coding and Communication Networks LAB M5
+
+Information Theory, Coding and Communication Networks LAB N5
+
+Information Theory, Coding and Communication Networks LAB K6
+
+Information Theory, Coding and Communication Networks LAB L6
+
+Information Theory, Coding and Communication Networks LAB M6
+
+Information Theory, Coding and Communication Networks LAB N6
+
+Information Theory, Coding and Communication Networks LAB K7
+
+Information Theory, Coding and Communication Networks LAB L7
+
+Information Theory, Coding and Communication Networks LAB M7
+
+Information Theory, Coding and Communication Networks LAB N7
+
+Information Theory, Coding and Communication Networks LAB K8
+
+Information Theory, Coding and Communication Networks LAB L8
+
+Information Theory, Coding and Communication Networks LAB M8
+
+Information Theory, Coding and Communication Networks LAB N8
+
+Advanced Processors LAB K5
+
+Advanced Processors LAB L5
+
+Advanced Processors LAB M5
+
+Advanced Processors LAB N5
+
+Advanced Processors LAB K6
+
+Advanced Processors LAB L6
+
+Advanced Processors LAB M6
+
+Advanced Processors LAB N6
+
+Advanced Processors LAB K7
+
+Advanced Processors LAB L7
+
+Advanced Processors LAB M7
+
+Advanced Processors LAB N7
+
+Advanced Processors LAB K8
+
+Advanced Processors LAB L8
+
+Advanced Processors LAB M8
+
+Advanced Processors LAB N8
+
+System Programming and Operating Systems LAB K5
+
+System Programming and Operating Systems LAB L5
+
+System Programming and Operating Systems LAB M5
+
+System Programming and Operating Systems LAB N5
+
+System Programming and Operating Systems LAB K6
+
+System Programming and Operating Systems LAB L6
+
+System Programming and Operating Systems LAB M6
+
+System Programming and Operating Systems LAB N6
+
+System Programming and Operating Systems LAB K7
+
+System Programming and Operating Systems LAB L7
+
+System Programming and Operating Systems LAB M7
+
+System Programming and Operating Systems LAB N7
+
+System Programming and Operating Systems LAB K8
+
+System Programming and Operating Systems LAB L8
+
+System Programming and Operating Systems LAB M8
+
+System Programming and Operating Systems LAB N8
+
+Employability Skills and Mini Project LAB K5
+
+Employability Skills and Mini Project LAB L5
+
+Employability Skills and Mini Project LAB M5
+
+Employability Skills and Mini Project LAB N5
+
+Employability Skills and Mini Project LAB K6
+
+Employability Skills and Mini Project LAB L6
+
+Employability Skills and Mini Project LAB M6
+
+Employability Skills and Mini Project LAB N6
+
+Employability Skills and Mini Project LAB K7
+
+Employability Skills and Mini Project LAB L7
+
+Employability Skills and Mini Project LAB M7
+
+Employability Skills and Mini Project LAB N7
+
+Employability Skills and Mini Project LAB K8
+
+Employability Skills and Mini Project LAB L8
+
+Employability Skills and Mini Project LAB M8
+
+Employability Skills and Mini Project LAB N8
+
+Mobile Communication LAB P5
+
+Mobile Communication LAB Q5
+
+Mobile Communication LAB R5
+
+Mobile Communication LAB S5
+
+Mobile Communication LAB P6
+
+Mobile Communication LAB Q6
+
+Mobile Communication LAB R6
+
+Mobile Communication LAB S6
+
+Mobile Communication LAB P7
+
+Mobile Communication LAB Q7
+
+Mobile Communication LAB R7
+
+Mobile Communication LAB S7
+
+Mobile Communication LAB P8
+
+Mobile Communication LAB Q8
+
+Mobile Communication LAB R8
+
+Mobile Communication LAB S8
+
+Broadband Communication Systems LAB P5
+
+Broadband Communication Systems LAB Q5
+
+Broadband Communication Systems LAB R5
+
+Broadband Communication Systems LAB S5
+
+Broadband Communication Systems LAB P6
+
+Broadband Communication Systems LAB Q6
+
+Broadband Communication Systems LAB R6
+
+Broadband Communication Systems LAB S6
+
+Broadband Communication Systems LAB P7
+
+Broadband Communication Systems LAB Q7
+
+Broadband Communication Systems LAB R7
+
+Broadband Communication Systems LAB S7
+
+Broadband Communication Systems LAB P8
+
+Broadband Communication Systems LAB Q8
+
+Broadband Communication Systems LAB R8
+
+Broadband Communication Systems LAB S8
+
+Machine Learning LAB R5
+
+Machine Learning LAB S5
+
+Machine Learning LAB Q5
+
+Machine Learning LAB R6
+
+Machine Learning LAB S6
+
+Machine Learning LAB Q6
+
+Machine Learning LAB R7
+
+Machine Learning LAB S7
+
+Machine Learning LAB Q7
+
+Machine Learning LAB R8
+
+Machine Learning LAB Q8
+
+Audio Video Engineering LAB P8
+
+Audio Video Engineering LAB Q8
+
+Audio Video Engineering LAB P7
+
+Audio Video Engineering LAB P6
+
+Audio Video Engineering LAB P5
+
+Data Analytics LAB E8
+
+Data Analytics LAB F8
+
+Data Analytics LAB G8
+
+Data Analytics LAB H8
+
+Data Analytics LAB E7
+
+Data Analytics LAB F7
+
+Data Analytics LAB G7
+
+Data Analytics LAB H7
+
+Data Analytics LAB E8
+
+Data Analytics LAB F8
+
+Data Analytics LAB G8
+
+Data Analytics LAB H8
+
+ETC-VLSI DESIGN AND TECHNOLOGY LAB Q6
+
+ETC-VLSI DESIGN AND TECHNOLOGY LAB R6
+
+ETC-VLSI DESIGN AND TECHNOLOGY LAB P6
+
+ETC-VLSI DESIGN AND TECHNOLOGY LAB S6
+
+ETC-COMPUTER NETWORKS - LAB K7
+
+ETC-COMPUTER NETWORKS AND SECURITY LAB R8
+
+SIGNALS AND CONTROL SYSTEM LAB F7
+
+SIGNALS AND CONTROL SYSTEM LAB G7
+
+SIGNALS AND CONTROL SYSTEM LAB H7
+
+SIGNALS AND CONTROL SYSTEM LAB E7
+
+SIGNALS & SYSTEMS TUTORIAL E6
+
+SIGNALS & SYSTEMS TUTORIAL F6
+
+SIGNALS & SYSTEMS TUTORIAL G6
+
+SIGNALS & SYSTEMS TUTORIAL H6
+
+
+
+
+
+
+
+
